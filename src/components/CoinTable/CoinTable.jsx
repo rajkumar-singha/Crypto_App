@@ -1,11 +1,13 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { fetchCoinDataCall } from "../../services/fetchCoinData";
 import { useQuery } from "react-query";
-import { CurrencyContext } from "../../context/CurrencyContext";
+import currencyStore  from "../../state/store";
+// import { CurrencyContext } from "../../context/CurrencyContext";
 
 function CoinTable() {
   const [page, setPage] = useState(1);
-  const { currency } = useContext(CurrencyContext);
+  // const { currency } = useContext(CurrencyContext);
+  const { currency } = currencyStore();
 
   const { data, isLoading, isError, error } = useQuery(
     ["coins", page, currency],
